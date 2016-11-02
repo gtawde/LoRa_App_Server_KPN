@@ -1,10 +1,3 @@
-<?php  
- $json = file_get_contents("php://input");
-echo $json;
-?>
-
-parse_str(file_get_contents("php://input"),$post_vars);
-
 <?php 
 $servername = "localhost";
 $username = "id127051_gct_imemyself";
@@ -45,13 +38,13 @@ if (json) {
     $devlrrcnt= $object->{'DevLrrCnt'};
 
     $sql = "INSERT INTO Display_LoraServer (DevEUI, LrrRSSI, payload_hex, Time)
-    VALUES ('$DevEUI', '$LrrRSSI', '$payload_hex', '$Time')";
+    VALUES ('$deveui', '$lrrrssi', '$payload_hex', '$time')";
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
+    header("HTTP/1.0 200 OK");
     } 
     else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 ?>
-
