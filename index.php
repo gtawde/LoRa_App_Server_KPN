@@ -11,6 +11,10 @@
     p.heading {
     font-family: Verdana, Geneva, sans-serif;
     }
+    p.three {
+    border-style: dotted;
+    border-width: 2px;
+    }
     div.container {
     width: 100%;
     border: 1px solid gray;
@@ -33,7 +37,7 @@
     background-color: #660066;
     border: none;
     color: white;
-    padding: 20px 72px;
+    padding: 20px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

@@ -11,24 +11,26 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-$sql = "SELECT DevEUI, payload_hex, LrrRSSI, Time FROM Display_LoraServer";
+$sql = "SELECT DevEUI, payload_hex, FPort, Time FROM Main_LoraServer";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-    echo "<table border=4 table width=1000>
+    echo "<table border=4 table width=1000px>
     <tr>
     <th>DevEUI</th>
     <th>Payload</th>
-    <th>RSSI</th>
+    <th>Port</th>
     <th>Time</th>
     </tr>";
     while($row = $result->fetch_assoc()) {
+        $epoch = ((int)$row['Time']); 
+        $dt = new DateTime("@$epoch");
         echo "<tr>";
         echo "<td>" . $row['DevEUI'] . "</td>"; 
         echo "<td>" . $row['payload_hex'] . "</td>"; 
-        echo "<td>" . $row['LrrRSSI'] . "</td>"; 
-        echo "<td>" . $row['Time'] . "</td>"; 
+        echo "<td>" . $row['FPort'] . "</td>"; 
+        echo "<td>" . $dt->format('Y-m-d H:i:s') . "</td>"; 
         echo "</tr>";
     }
 echo "</table>";
